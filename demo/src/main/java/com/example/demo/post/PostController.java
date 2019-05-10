@@ -20,16 +20,16 @@ public class PostController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    /*@CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/api/posts")
     public List<Post> getAllPosts(){
         return postService.getAll();
     }
-
-    @CrossOrigin(origins = "http://localhost:4200")
+*/
+   /* @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/api/posts/{id}")
     public Post get(@PathVariable int id){
         return postService.get(id);
-    }
+    }*/
 
 }
