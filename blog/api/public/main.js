@@ -42,6 +42,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_blog_item_details_blog_item_details_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/blog-item-details/blog-item-details.component */ "./src/app/components/blog-item-details/blog-item-details.component.ts");
 /* harmony import */ var _components_blog_home_blog_home_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/blog-home/blog-home.component */ "./src/app/components/blog-home/blog-home.component.ts");
 /* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
+/* harmony import */ var _components_add_post_add_post_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/add-post/add-post.component */ "./src/app/components/add-post/add-post.component.ts");
+
 
 
 
@@ -74,6 +76,10 @@ var routes = [{
     {
         path: 'login',
         component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"],
+    },
+    {
+        path: 'add-post',
+        component: _components_add_post_add_post_component__WEBPACK_IMPORTED_MODULE_9__["AddPostComponent"]
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -183,6 +189,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
 /* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./services/authentication.service */ "./src/app/services/authentication.service.ts");
 /* harmony import */ var _services_interceptor_auth_service__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./services/interceptor-auth.service */ "./src/app/services/interceptor-auth.service.ts");
+/* harmony import */ var _components_add_post_add_post_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/add-post/add-post.component */ "./src/app/components/add-post/add-post.component.ts");
+
 
 
 
@@ -233,7 +241,8 @@ var AppModule = /** @class */ (function () {
                 _directives_text_format_directive__WEBPACK_IMPORTED_MODULE_21__["TextFormatDirective"],
                 _components_selectize_selectize_component__WEBPACK_IMPORTED_MODULE_22__["SelectizeComponent"],
                 _components_new_post_new_post_component__WEBPACK_IMPORTED_MODULE_23__["NewPostComponent"],
-                _components_login_login_component__WEBPACK_IMPORTED_MODULE_24__["LoginComponent"]
+                _components_login_login_component__WEBPACK_IMPORTED_MODULE_24__["LoginComponent"],
+                _components_add_post_add_post_component__WEBPACK_IMPORTED_MODULE_27__["AddPostComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -259,6 +268,78 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/add-post/add-post.component.css":
+/*!************************************************************!*\
+  !*** ./src/app/components/add-post/add-post.component.css ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYWRkLXBvc3QvYWRkLXBvc3QuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/components/add-post/add-post.component.html":
+/*!*************************************************************!*\
+  !*** ./src/app/components/add-post/add-post.component.html ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<div class=\"col-lg-9 col-md-9 col-sm-9\">\n  <h4>Dodaj post:</h4>\n  <form (ngSubmit)=\"submit()\">\n    <div class=\"form-group\">\n        <label class=\"col-form-label\">Adres obrazu:</label>\n        <input name=\"image\" type=\"text\" class=\"form-control\" placeholder=\"URL\" [(ngModel)]=\"post.image\">\n    </div>\n\n    <div class=\"form-group\">\n        <label class=\"col-form-label\">Treść:</label>\n        <textarea name=\"text\" type=\"text\" class=\"form-control\" placeholder=\"Treść\" [(ngModel)]=\"post.text\" rows=\"10\"></textarea>\n</div>\n\n      <div class=\"form-group button\">\n          <button type=\"submit\" class=\"btn btn-info\">Dodaj</button>\n      </div>\n  </form>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/add-post/add-post.component.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/components/add-post/add-post.component.ts ***!
+  \***********************************************************/
+/*! exports provided: AddPostComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddPostComponent", function() { return AddPostComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_services_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/data.service */ "./src/app/services/data.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+var AddPostComponent = /** @class */ (function () {
+    function AddPostComponent(dataService, router) {
+        this.dataService = dataService;
+        this.router = router;
+        this.post = {
+            image: '',
+            text: ''
+        };
+    }
+    AddPostComponent.prototype.ngOnInit = function () {
+    };
+    AddPostComponent.prototype.submit = function () {
+        var _this = this;
+        this.dataService.createOrUpdate(this.post).subscribe(function (f) {
+            _this.router.navigate(['/blog']);
+        });
+    };
+    AddPostComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-add-post',
+            template: __webpack_require__(/*! ./add-post.component.html */ "./src/app/components/add-post/add-post.component.html"),
+            styles: [__webpack_require__(/*! ./add-post.component.css */ "./src/app/components/add-post/add-post.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    ], AddPostComponent);
+    return AddPostComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/blog-home/blog-home.component.css":
 /*!**************************************************************!*\
   !*** ./src/app/components/blog-home/blog-home.component.css ***!
@@ -277,7 +358,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<search-bar (name)=\"getName($event)\">\r\n</search-bar>\r\n<blog [filterText]=\"filterText\">\r\n</blog>"
+module.exports = "<a [routerLink]=\"['/add-post']\" class=\"btn btn-primary\">Dodaj nowy post</a>\r\n<search-bar (name)=\"getName($event)\">\r\n</search-bar>\r\n<blog [filterText]=\"filterText\">\r\n</blog>"
 
 /***/ }),
 
@@ -605,7 +686,7 @@ module.exports = ".myitems{\r\n    width: 100%\r\n}\r\n/*# sourceMappingURL=data
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div >\r\n    <selectize></selectize>\r\n  <div  class=\"card\" style=\"width: 100%\" *ngFor=\"let item of items$ | filter: filterText\">\r\n    <blog-item  [id]=\"item.id\" [image]=\"item.image\" \r\n    [text]=\"item.title\">\r\n    </blog-item>\r\n   </div>\r\n</div>\r\n\r\n "
+module.exports = "<div >\r\n    <selectize></selectize>\r\n  <div  class=\"card\" style=\"width: 100%\" *ngFor=\"let item of items$ | filter: filterText\">\r\n    <blog-item  [id]=\"item.id\" [image]=\"item.image\" \r\n    [text]=\"item.text\">\r\n    </blog-item>\r\n   </div>\r\n</div>\r\n\r\n "
 
 /***/ }),
 
@@ -1298,7 +1379,7 @@ __webpack_require__.r(__webpack_exports__);
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
-        this.url = "http://localhost:8080";
+        this.url = "http://localhost:3000";
     }
     DataService.prototype.getAll = function () {
         return this.http.get(this.url + '/api/posts/');
@@ -1311,6 +1392,9 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.createPost = function (data) {
         return this.http.post(this.url + "/posts", { data: JSON.stringify(data) });
+    };
+    DataService.prototype.createOrUpdate = function (post) {
+        return this.http.post(this.url + "/api/posts", post);
     };
     DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -1505,7 +1589,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\MW\TAI_LAB8\blog\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\Piwko projekt\TAI_LAB8\blog\src\main.ts */"./src/main.ts");
 
 
 /***/ })

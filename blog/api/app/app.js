@@ -8,6 +8,7 @@ import mongoose from 'mongoose';
 import config from './config';
 import routes from './REST/routes';
 
+
 const app = express();
 app.use(express.static(__dirname + '/'));
 app.use(morgan('dev'));
@@ -16,7 +17,7 @@ app.use(bodyParser.json({limit: '2048kb'}));
 
 app.use(cors());
 
-app.use(express.static('frontend/app'));
+app.use(express.static('public'));
 
 mongoose.connect(config.databaseUrl, {useNewUrlParser: true, useCreateIndex: true}, (error) => {
     if (error) {
